@@ -1,0 +1,75 @@
+@import "tailwindcss" source("../");
+
+@theme {
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-script: "Great Vibes", "Cormorant Garamond", cursive;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ivory: #fdfbf6;
+  --color-paper: #f7f4ec;
+  --color-parchment: #f1ece0;
+  --color-gold: #a98545;
+  --color-gold-soft: #d8c49a;
+  --color-ink: #3a332c;
+  --color-ink-soft: #6d6459;
+  --color-sage: #7f8f72;
+  --color-rose: #c2878c;
+
+  --animate-reveal: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  @apply m-0 bg-ivory text-ink font-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sections fade up as they scroll into view; see components/Reveal.tsx. */
+.reveal {
+  opacity: 0;
+}
+
+.reveal[data-visible="true"] {
+  animation: var(--animate-reveal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.hero-enter {
+  animation: fade-in 1.6s ease-out both;
+}
+
+/* Letterspaced small caps used for dates, labels and eyebrow text. */
+.eyebrow {
+  @apply font-sans text-[0.7rem] uppercase tracking-[0.42em] text-gold;
+}
+
+.rule {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-gold-soft to-transparent;
+}
